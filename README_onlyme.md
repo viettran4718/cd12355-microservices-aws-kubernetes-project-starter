@@ -22,7 +22,7 @@ kubectl port-forward service/postgresql-service 5433:5432 &
 ### Close port-forwarding to `postgresql-service`
 ps aux | grep 'kubectl port-forward' | grep -v grep | awk '{print $2}' | xargs -r kill
 
-### Import env variable to os
+### Import env variable to os (local)
 export DB_NAME=viettq-db-name
 export DB_PASSWORD=viettq-db-password
 export DB_USERNAME=viettq-db-user
@@ -44,9 +44,17 @@ python app.py
 curl 127.0.0.1:5153/api/reports/daily_usage
 curl 127.0.0.1:5153/api/reports/user_visits
 
-### Build docker 
+### Build docker (local)
 docker build -t coworking-analytics .
 docker run --network="host" coworking-analytics
+
+### Generate DB password encrypt and replace to DB_PASSWORD in deployment/secret.yaml
+echo -n 'viettq-db-password' | base64
+
+### Generate secret variable ekc
+kubectl apply -f ./deployment/secret.yaml
+kubectl apply -f ./deployment/configmap.yaml
+kubectl apply -f ./deployment/coworking.yaml
 
 
 
