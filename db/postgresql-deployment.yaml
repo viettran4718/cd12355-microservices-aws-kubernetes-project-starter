@@ -16,11 +16,11 @@ spec:
         image: postgres:latest
         env:
         - name: POSTGRES_DB
-          value: mydatabase
+          value: viettq-db-name
         - name: POSTGRES_USER
-          value: myuser
+          value: viettq-db-user
         - name: POSTGRES_PASSWORD
-          value: mypassword
+          value: viettq-db-password
         ports:
         - containerPort: 5432
         volumeMounts:
