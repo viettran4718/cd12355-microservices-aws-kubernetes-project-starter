@@ -7,17 +7,17 @@ phases:
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 438118501148.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
-      - echo Build started on `date`
+      - echo Build started on $(date)
       - echo Building the Docker image...
       - docker build -t cloud-proj3:v1 .
       - docker tag cloud-proj3:v1 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:v1
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Build completed on $(date)
       - echo Pushing the Docker image...
       - docker push 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:v1
       - echo Tagging the image as latest...
-      - docker tag 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:v1 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:latest
+      - docker tag cloud-proj3:v1 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:latest
       - docker push 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:latest
 
 artifacts:
