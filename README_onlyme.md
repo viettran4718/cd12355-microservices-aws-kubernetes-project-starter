@@ -17,7 +17,9 @@ sh ./db/apply.sh
 
 kubectl apply -f ./db/postgresql-service.yaml
 
-kubectl port-forward service/postgresql-service 5433:5432 &
+kubectl port-forward service/postgresql-service 5432:5432 &
+
+psql -h localhost -p 5432 -U viettq-db-user -d viettq-db-name -c '\q'
 
 ### Close port-forwarding to `postgresql-service`
 ps aux | grep 'kubectl port-forward' | grep -v grep | awk '{print $2}' | xargs -r kill
@@ -27,7 +29,7 @@ export DB_NAME=viettq-db-name
 export DB_PASSWORD=viettq-db-password
 export DB_USERNAME=viettq-db-user
 export DB_HOST=127.0.0.1
-export DB_PORT=5433
+export DB_PORT=5432
 
 ### Insert data to database
 
