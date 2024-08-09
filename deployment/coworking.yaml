@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: coworking
-        image: 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:v1
+        image: 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -38,14 +38,12 @@ spec:
             port: 5153
           initialDelaySeconds: 5
           timeoutSeconds: 2
-          periodSeconds: 10 # Added for better probe configuration
         readinessProbe:
           httpGet:
-            path: /readiness_check
+            path: "/readiness_check"
             port: 5153
           initialDelaySeconds: 5
           timeoutSeconds: 5
-          periodSeconds: 10 # Added for better probe configuration
         envFrom:
         - configMapRef:
             name: viettq-config-map
