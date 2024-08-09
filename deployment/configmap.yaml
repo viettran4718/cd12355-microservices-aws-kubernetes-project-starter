@@ -5,5 +5,5 @@ metadata:
 data:
   DB_NAME: viettq-db-name
   DB_USER: viettq-db-user
-  DB_HOST: 10.100.228.4  # get db_host at kubectl get svc postgresql-service
+  DB_HOST: "postgresql-service.default.svc.cluster.local"
   DB_PORT: "5432"
