@@ -51,10 +51,15 @@ docker run --network="host" coworking-analytics
 ### Generate DB password encrypt and replace to DB_PASSWORD in deployment/secret.yaml
 echo -n 'viettq-db-password' | base64
 
-### Generate secret variable ekc
+### Apply to ekc
 kubectl apply -f ./deployment/secret.yaml
 kubectl apply -f ./deployment/configmap.yaml
 kubectl apply -f ./deployment/coworking.yaml
+
+### Remove to ekc
+kubectl delete -f ./deployment/secret.yaml
+kubectl delete -f ./deployment/configmap.yaml
+kubectl delete -f ./deployment/coworking.yaml
 
 
 
