@@ -38,12 +38,14 @@ spec:
             port: 5153
           initialDelaySeconds: 5
           timeoutSeconds: 2
+          periodSeconds: 10 # Added for better probe configuration
         readinessProbe:
           httpGet:
-            path: "/readiness_check"
+            path: /readiness_check
             port: 5153
           initialDelaySeconds: 5
           timeoutSeconds: 5
+          periodSeconds: 10 # Added for better probe configuration
         envFrom:
         - configMapRef:
             name: viettq-config-map
