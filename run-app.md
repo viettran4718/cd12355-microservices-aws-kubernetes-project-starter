@@ -49,7 +49,7 @@ select * from tokens
 ### Generate DB password encrypt and replace to DB_PASSWORD in deployment/secret.yaml
 echo -n 'viettq-db-password' | base64
 
-### push image to ecr (manual)
+### push image to ecr (manual) - Skip this if build by AWS CodeBuild
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 438118501148.dkr.ecr.us-east-1.amazonaws.com
 docker build -t cloud-proj3:v1 .
 docker tag cloud-proj3:v1 438118501148.dkr.ecr.us-east-1.amazonaws.com/cloud-proj3:v1
